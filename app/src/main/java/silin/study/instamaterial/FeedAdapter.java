@@ -1,6 +1,7 @@
 package silin.study.instamaterial;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
 import android.view.Display;
@@ -59,6 +60,14 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             viewHolder.feedBottomImageView.setImageResource(R.drawable.img_feed_bottom_1);
             viewHolder.feedImageView.setImageResource(R.drawable.img_feed_center_1);
         }
+
+        viewHolder.feedBottomImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CommentsActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
