@@ -14,12 +14,14 @@ import android.widget.ImageView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
+public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> implements View.OnClickListener {
     private static final int ANIMATED_ITEMS_COUNT = 2;
 
     private Context mContext;
     private int lastAnimatedPosition = -1,
         itemsCount = 4;
+
+    private OnFeedItemClickListener mOnFeedItemClickListener;
 
     public FeedAdapter(Context context) {
         mContext = context;
@@ -61,19 +63,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             viewHolder.feedImageView.setImageResource(R.drawable.img_feed_center_1);
         }
 
-        viewHolder.feedBottomImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, CommentsActivity.class);
-
-                int[] startingLocation = new int[2];
-                v.getLocationOnScreen(startingLocation);
-
-                intent.putExtra(CommentsActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
-
-                mContext.startActivity(intent);
-            }
-        });
+        viewHolder.feedBottomImageView.setOnClickListener(this);
+        viewHolder.feedBottomImageView.setTag(position);
     }
 
     @Override
@@ -84,6 +75,20 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     public void updateItems() {
         itemsCount = 10;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.feedBottom_iv) {
+            if (mOnFeedItemClickListener != null)
+            {
+                mOnFeedItemClickListener.onCommentsClick(v, (int) v.getTag());
+            }
+        }
+    }
+
+    public void setOnFeedItemClickListener(OnFeedItemClickListener onFeedItemClickListener) {
+        mOnFeedItemClickListener = onFeedItemClickListener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -97,5 +102,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             super(itemView);
             ButterKnife.inject(this, itemView);
         }
+    }
+
+    public interface OnFeedItemClickListener {
+        public void onCommentsClick(View v, int position);
     }
 }

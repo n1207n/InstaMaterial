@@ -1,6 +1,7 @@
 package silin.study.instamaterial;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,7 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements FeedAdapter.OnFeedItemClickListener {
 
     @InjectView(R.id.main_toolbar) Toolbar mMainToolbar;
     @InjectView(R.id.feed_rv) RecyclerView mRecyclerView;
@@ -49,6 +51,7 @@ public class MainActivity extends ActionBarActivity {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mFeedAdapter = new FeedAdapter(this);
+        mFeedAdapter.setOnFeedItemClickListener(this);
         mRecyclerView.setAdapter(mFeedAdapter);
     }
 
@@ -122,5 +125,18 @@ public class MainActivity extends ActionBarActivity {
 
         mFeedAdapter.updateItems();
         mRecyclerView.animate().translationY(0).setDuration(ANIM_DURATION_TOOLBAR).setStartDelay(100);
+    }
+
+    @Override
+    public void onCommentsClick(View v, int position) {
+        Intent intent = new Intent(this, CommentsActivity.class);
+
+        int[] startingLocation = new int[2];
+        v.getLocationOnScreen(startingLocation);
+
+        intent.putExtra(CommentsActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+
+        startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 }

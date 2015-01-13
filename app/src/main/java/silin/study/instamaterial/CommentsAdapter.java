@@ -22,7 +22,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             mItemsCount = 4,
             mAvatarSize;
 
-    private boolean mAnimationsLockednimationsLocked = false;
+    private boolean mAnimationsLocked = false;
     private boolean mDelayEnterAnimation = true;
 
 
@@ -39,7 +39,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     }
 
     private void runEnterAnimation(View view, int position) {
-        if (mAnimationsLockednimationsLocked) return;
+        if (mAnimationsLocked) return;
 
         if (position > mLastAnimatedPosition) {
             mLastAnimatedPosition = position;
@@ -59,7 +59,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        mAnimationsLockednimationsLocked = true;
+                        mAnimationsLocked = true;
                     }
 
                     @Override
@@ -115,8 +115,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         notifyItemInserted(mItemsCount - 1);
     }
 
-    public void setAnimationsLocked(boolean animationsLockednimationsLocked) {
-        mAnimationsLockednimationsLocked = animationsLockednimationsLocked;
+    public void setAnimationsLocked(boolean animationsLocked) {
+        mAnimationsLocked = animationsLocked;
     }
 
     public void setDelayEnterAnimation(boolean delayEnterAnimation) {
