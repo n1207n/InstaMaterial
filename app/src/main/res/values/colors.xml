@@ -3,4 +3,10 @@
     <color name="primaryColor">#2d5d82</color>
     <color name="primaryDarkColor">#21425d</color>
     <color name="accentColor">#01bcd5</color>
+
+    <color name="default_btn_light_normal">#00000000</color>
+    <color name="default_btn_light_pressed">#40ffffff</color>
+
+    <color name="fab_color_pressed">#007787</color>
+    <color name="fab_color_shadow">#44000000</color>
 </resources>
