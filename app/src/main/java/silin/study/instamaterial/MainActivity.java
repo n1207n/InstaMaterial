@@ -27,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
 
     private FeedAdapter mFeedAdapter;
 
+    private Utils mUtils;
+
     private boolean pendingIntroAnimation = false;
 
     private static final int ANIM_DURATION_TOOLBAR = 300;
@@ -38,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.inject(this);
+        mUtils = new Utils(this);
 
         if (savedInstanceState == null) pendingIntroAnimation = true;
 
@@ -87,6 +90,7 @@ public class MainActivity extends ActionBarActivity {
         mMainToolbar.setTranslationY(-actionbarSize);
         mLogoImageView.setTranslationY(-actionbarSize);
         mInboxMenuItem.getActionView().setTranslationY(-actionbarSize);
+        mRecyclerView.setTranslationY(+mRecyclerView.getHeight());
 
         mMainToolbar.animate().translationY(0).setDuration(ANIM_DURATION_TOOLBAR).setStartDelay(300);
         mLogoImageView.animate().translationY(0).setDuration(ANIM_DURATION_TOOLBAR).setStartDelay(400);
@@ -115,6 +119,8 @@ public class MainActivity extends ActionBarActivity {
 
     private void startContentAnimation() {
         mCreateImageButton.animate().translationY(0).setInterpolator(new OvershootInterpolator(1.f)).setStartDelay(300).setDuration(ANIM_DURATION_FAB).start();
+
         mFeedAdapter.updateItems();
+        mRecyclerView.animate().translationY(0).setDuration(ANIM_DURATION_TOOLBAR).setStartDelay(100);
     }
 }
