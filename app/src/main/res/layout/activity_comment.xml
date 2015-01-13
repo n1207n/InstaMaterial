@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="silin.study.instamaterial.CommentsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/comments_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <ImageView
+            android:id="@+id/logo_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="center"
+            android:src="@drawable/img_toolbar_logo"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/comments_toolbar"
+        android:background="@color/comments_background"
+        android:elevation="@dimen/default_elevation"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/comments_rv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:scrollbars="none"/>
+
+        <LinearLayout
+            android:id="@+id/add_comment_widget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/comments_background"
+            android:elevation="@dimen/default_elevation">
+
+            <EditText
+                android:id="@+id/comment_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
+                android:inputType="textCapSentences"
+                android:hint="@string/comment_et_hint"/>
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/sendComment_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
