@@ -2,6 +2,8 @@ package silin.study.instamaterial;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +15,10 @@ import butterknife.InjectView;
 public class MainActivity extends ActionBarActivity {
 
     @InjectView(R.id.main_toolbar) Toolbar mMainToolbar;
+    @InjectView(R.id.feed_rv)
+    RecyclerView mRecyclerView;
+
+    private FeedAdapter mFeedAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,10 @@ public class MainActivity extends ActionBarActivity {
 
         setSupportActionBar(mMainToolbar);
         mMainToolbar.setNavigationIcon(R.drawable.ic_menu_white);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mFeedAdapter = new FeedAdapter(this);
+        mRecyclerView.setAdapter(mFeedAdapter);
     }
 
 
