@@ -65,6 +65,12 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CommentsActivity.class);
+
+                int[] startingLocation = new int[2];
+                v.getLocationOnScreen(startingLocation);
+
+                intent.putExtra(CommentsActivity.ARG_DRAWING_START_LOCATION, startingLocation[1]);
+
                 mContext.startActivity(intent);
             }
         });

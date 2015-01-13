@@ -19,6 +19,7 @@
         <activity
             android:name=".CommentsActivity"
             android:label="@string/title_activity_comment"
+            android:theme="@style/CommentsActivityTheme"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

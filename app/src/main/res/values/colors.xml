@@ -9,4 +9,6 @@
 
     <color name="fab_color_pressed">#007787</color>
     <color name="fab_color_shadow">#44000000</color>
+
+    <color name="comments_background">#ffffff</color>
 </resources>

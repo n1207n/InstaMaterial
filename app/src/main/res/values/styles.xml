@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/accentColor</item>
     </style>
 
+    <style name="CommentsActivityTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
