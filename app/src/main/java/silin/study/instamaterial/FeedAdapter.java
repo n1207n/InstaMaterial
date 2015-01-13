@@ -39,7 +39,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         if (position > lastAnimatedPosition) {
             lastAnimatedPosition = position;
 
-            Display display = view.getDisplay();
+            Display display = view.getRootView().getDisplay();
             Point point = new Point();
             display.getSize(point);
 
